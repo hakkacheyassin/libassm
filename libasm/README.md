@@ -16,14 +16,13 @@ libasm/
 └── README.md        - This file
 ```
 
-## Build
+## Build![alt text](https://www.tutorialspoint.com/assembly_programming/images/register1.jpg)
 ```bash
 make            # Build library
-make test       # Build test program
-./test          # Run tests
 make clean      # Clean objects
 make fclean     # Clean everything
 make re         # Rebuild
+make run
 ```
 
 ## Progress
@@ -44,6 +43,50 @@ ECX  = 32 bits = 4 bytes
 CX   = 16 bits = 2 bytes  
 CL   = 8 bits  = 1 byte   
 CH   = 8 bits  = 1 byte   
+
+## CPU Register
+
+         ┌───────────────────────┐
+         │      CPU Core         │
+         │                       │
+         │ ┌───────────────┐     │
+         │ │  Registers    │     │
+         │ │  RAX RBX RCX  │     │
+         │ │  RDX RDI RSI  │     │
+         │ │  RSP RBP R8-15│     │
+         │ └───────────────┘     │
+         │                       │
+         │ ┌───────────────┐     │
+         │ │   ALU         │◄────┤
+         │ │ (add, sub...) │     │
+         │ └───────────────┘     │
+         │                       │
+         │ ┌───────────────┐     │
+         │ │ Control Unit  │     │
+         │ │ (decodes instr)│    │
+         │ └───────────────┘     │
+         └─────────┬─────────────┘
+                   │
+                   ▼
+         ┌───────────────────────┐
+         │      Memory / Stack   │
+         │  [data, instructions] │
+         └───────────────────────┘
+
+## IMPORTANT REGISTERS
+
+RAX	Return value
+AL / AH	8-bit parts of RAX
+RDI	Arg 1
+RSI	Arg 2
+RDX	Arg 3
+DL	Low 8-bit of RDX
+RCX	Arg 4
+CL	Low 8-bit of RCX
+R8	Arg 5
+R9	Arg 6
+RSP	Stack pointer
+RBP
 
 
 gcc main.c -L. -lasm -o

@@ -5,21 +5,21 @@ section .text
     extern _ft_strcpy
 
 _ft_strdup:
-    push rdi
-    call _ft_strlen
-    inc rax
-    mov rdi, rax
-    call _malloc
+    push rdi ; save src
+    call _ft_strlen ;rax = strlen(src)
+    inc rax ;\0
+    mov rdi, rax ;rdi=size
+    call _malloc ;rax = new buffer
     test rax, rax
-    jz .malloc_failed
-    pop rsi
-    mov rdi, rax
-    push rax
+    jz .malloc_failed ;Jump if Zero
+    pop rsi ;rsi = src
+    mov rdi, rax ; rdi = dst
+    push rax ; save dst
     call _ft_strcpy
-    pop rax
+    pop rax ; rax=dst
     ret
 
 .malloc_failed:
     pop rdi
-    xor rax, rax
+    xor rax, rax ;0
     ret

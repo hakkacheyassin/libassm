@@ -13,8 +13,12 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) test
 
 re: fclean all
+
+run: all
+	gcc main.c -L. -lasm -o test
+	./test
 
 .PHONY: all clean fclean re
